@@ -12,4 +12,6 @@ class Booking < ActiveRecord::Base
     errors.add(:user, 'Não poder alterar a reserva de outro usuário') if user != current_user
   end
 
+  scope :in_range, ->(x) { where('day BETWEEN ? AND ?', x, x + 7.day) }
+
 end
